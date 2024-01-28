@@ -22,8 +22,6 @@ app.use(bodyParser.urlencoded({extended: true}))
 // use article routes
 const articleRoutes = require('./routes/article');
 app.use('/', articleRoutes);
-app.use('/article', articleRoutes)
-app.use('/author/:author_id', articleRoutes)
 
 // app start point
 app.listen(3001, () => {

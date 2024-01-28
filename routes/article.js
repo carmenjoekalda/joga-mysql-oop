@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const articleControllerClass = require ('../controllers/article');
-const articleController = new articleControllerClass()
+const ArticleController = require('../controllers/article');
+const AuthorController = require('../controllers/author');
+
+const articleController = new ArticleController();
+const authorController = new AuthorController();
 
 router.get('/', (req, res) => articleController.getAllArticles(req, res));
 router.get('/article/:slug', (req, res) => articleController.getArticleBySlug(req, res));
-
-/*
-router.get('/', articleController.getAllArticles);
-router.get('/article/:slug', articleController.getArticleBySlug);
-router.get('/author/:author_id', articleController.getArticleByAuthor);
-*/
+router.get('/author/:author_id', (req, res) => authorController.getArticlesByAuthor(req, res));
 
 module.exports = router;

@@ -24,8 +24,8 @@ class BaseSQLModel {
     }
 
     async findByID(id) {
-        const query = `select * from ${this.tableName} where ${where}="${value}"`
-        const results  = await this.executeQuery(query, [where, value])
+        const query = `select * from ${this.tableName} where id = ?`
+        const results  = await this.executeQuery(query, [id])
         return results[0]
     }
 
@@ -37,7 +37,7 @@ class BaseSQLModel {
     async create(data) {
         const query = `insert into ${this.tableName} set ?`
         const result = await this.executeQuery(query, data)
-        return result.inserId
+        return result.insertId
     }
 
     async update(id, data) {
