@@ -1,5 +1,21 @@
 const con = require('../utils/db');
+const articleDbModel = require('../models/article')
+const articleModel = new articleDbModel();
 
+class articleController {
+    constructor() {
+        const articles = [] 
+    }
+
+    async getAllArticles(req, res) {
+        const articles = await articleModel.findAll()
+        res.status(201).json({articles: articles})
+    } 
+}
+
+module.exports = articleController
+
+/*
 // show all articles - index page
 const getAllArticles = ('/', (req, res) => {
     let query = "SELECT * FROM article";
@@ -30,7 +46,7 @@ const getArticleBySlug = ('/article/:slug', (req, res) => {
     });
 });
 
-const getAticleByAuthor = ('/author/:author_id', (req, res) => {
+const getArticleByAuthor = ('/author/:author_id', (req, res) => {
     let authorQuery = `select name from author where id = ${req.params.author_id}`;
     let articlesQuery = `select * from article where author_id = ${req.params.author_id}`;
     let authorName;
@@ -55,5 +71,6 @@ const getAticleByAuthor = ('/author/:author_id', (req, res) => {
 module.exports = {
     getAllArticles,
     getArticleBySlug,
-    getAticleByAuthor
-}  
+    getArticleByAuthor
+}
+*/
