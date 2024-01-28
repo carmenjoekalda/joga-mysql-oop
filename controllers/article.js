@@ -47,6 +47,21 @@ class articleController {
             article: {id: newArticle, ...editedArticle}  
         })
     }
+
+    async deleteArticle(req, res) {
+        const deletedArticle = {
+            name: req.body.name,
+            image: req.body.image,
+            body: req.body.body,
+            published: new Date().toISOString().slice(0, 19).replace('T', ' '),
+            author_id: req.body.author_id
+        } 
+        const delArticle = await articleModel.deleteOne(req.params.id, deletedArticle)
+        res.status(201).json({
+            message: `deleted article with id ${delArticle}`,
+            article: {id: delArticle, ...deletedArticle}  
+        })
+    }
 }
 
 module.exports = articleController
