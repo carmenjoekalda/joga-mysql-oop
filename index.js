@@ -26,6 +26,6 @@ app.use('/article', articleRoutes)
 app.use('/author/:author_id', articleRoutes)
 
 // app start point
-app.listen(3000, () => {
-    console.log('App is started at http://localhost:3000')
+app.listen(3001, () => {
+    console.log('App is started at http://localhost:3001')
 })
