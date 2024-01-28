@@ -29,9 +29,9 @@ class BaseSQLModel {
         return results[0]
     }
 
-    async findOne(id) {
-        const query = `select * from ${this.tableName} where id = ?`
-        const results = await this.executeQuery(query, [id])
+    async findOne(where, value) {
+        const query = `select * from ${this.tableName} where ${where}="${value}"`
+        const results = await this.executeQuery(query, [where, value])
         return results[0] 
     }
     async create(data) {
